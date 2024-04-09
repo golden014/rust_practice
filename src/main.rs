@@ -36,18 +36,12 @@
 
 // }
 
-use std::fmt::Display;
+use std::{cell::Ref, fmt::Display};
 
 struct Node<T> {
     data: T,
     next: Option<Box<Node<T>>>
 }
-
-// impl<T> Node<T> {
-//     fn init(data: T) -> Self {
-//         Node{data:data, next: None}
-//     }
-// }
 
 
 fn print_linked_list<T: Display>(head: &Option<Box<Node<T>>>) {
@@ -58,13 +52,24 @@ fn print_linked_list<T: Display>(head: &Option<Box<Node<T>>>) {
     }
 }
 
-fn main() {
-    let mut head: Option<Box<Node<i32>>> = None;
+// fn push_linked_list<T>(curr_head: &mut &Option<Box<Node<T>>>, curr_tail: &mut &Option<Box<Node<T>>>, new_node: &Option<Box<Node<T>>>) {
+//     if curr_head.is_none() {
+//         *curr_head = new_node;
+//         *curr_tail = new_node;
+//     }
+// }
 
-    //push head
-    head = Some(Box::new(Node {data: 32, next: None}));
-    head = Some(Box::new(Node {data: 22, next: head}));
+
+
+fn main() {
+    let mut head: &Option<Box<Node<i32>>> = &None;
+    // let mut tail: &Option<Box<Node<i32>>> = None;
+
+    // //push head
+    // head = Some(Box::new(Node {data: 32, next: None}));
+    // head = Some(Box::new(Node {data: 22, next: head}));
 
     print_linked_list(&head);
 }
 
+//creating traditional linked list is fundamentally impossible with rust :D
